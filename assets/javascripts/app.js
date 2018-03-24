@@ -1,10 +1,10 @@
 // //  creating an empty array for fav Topics that will be added to
 //  var favTopic = [];
  
-// //  create buttons for new fav
+// Add newFav to favTopic array
 
+//create buttons for newFav
 
- 
 
 
 
