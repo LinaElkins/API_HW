@@ -30,7 +30,7 @@
     <div id="newFav">
 
    </div>
-   
+
 </div>
 
 <br>
@@ -83,8 +83,8 @@
 
           // Only taking action if the photo has an appropriate rating
           if (results[i].rating !== "r" && results[i].rating !== "pg-13") {
-            // Creating a div with the class "item"
-            var gifDiv = $("<div class='item'>");
+            // Creating a div with the class "gif"
+            var gifDiv = $("<div class='gif'>");
 
             // Storing the result item's rating
             var rating = results[i].rating;
@@ -95,9 +95,13 @@
             // Creating an image tag
             var animalImage = $("<img>");
 
-            // Giving the image tag an src attribute of a proprty pulled off the
-            // result item
+            //set src attribute to still img url
             animalImage.attr("src", results[i].images.fixed_height.url);
+            // animalImage.attr("srcStill", results[i].images.fixed_height_still.url);
+
+            // set src to move img
+            // animalImage.attr("srcMove",results[i].images.fixed_height.url);
+
 
             // Appending the paragraph and animalImage we created to the "gifDiv" div we created
             gifDiv.append(p);
@@ -109,6 +113,21 @@
         }
       });
   });
+
+// $(".gif").on("click",function() {  
+//     // If image is still
+//     if($(this).attr('src') == $(this).attr('src')) {
+//         // Change src to the moving image url          
+//         $(this).attr('src', $(this).attr('srcMove'));
+//     }
+//     // If image is moving
+//     else if($(this).attr('src') == $(this).attr('srcMove')) {
+//         // Change src to the still image url          
+//         $(this).attr('src', $(this).attr('srcStill'));
+//     }
+// })
+
+  
 </script>
 
 
