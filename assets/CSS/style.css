@@ -1,0 +1,36 @@
+body{
+    background-color:grey;
+    font-family: 'arial', Arial, Helvetica, sans-serif;
+    font-size:15px;
+    border-style: groove;
+    
+    }
+
+    .container{
+        width:100%;
+        margin: 50px auto;
+        overflow:auto;
+        background: turquoise;
+        border-style: groove;
+        padding:20px;
+    }
+    
+    .wrap{
+        padding: 50px;
+        margin:45px;
+    }
+
+    label{
+        font-size:20px;
+        padding-left:20px;
+        font-family: 'Times New Roman', Times, serif;
+        color:turquoise;
+    }
+
+   #addFav{
+        font-size:15px;
+        text-align: center;
+        border-style:outset;
+        padding:10px 15px;
+       
+    }

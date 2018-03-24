@@ -7,13 +7,15 @@
         <title>Giphy API Fun</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-        <link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css" />
+        <link rel="stylesheet" type="text/css" media="screen" href="assets/CSS/style.css" />
         <script src="assets/javascripts/app.js"></script>
 </head>
 
 <body>
 
     <!-- creating animal topics -->
+
+<div class = "container">
 <div class="row" id="topics">
   <button data-animal="dog">Dog</button>
   <button data-animal="cat">Cat</button>
@@ -33,12 +35,14 @@
 
 </div>
 
+</div>
+
 <br>
 
 <!-- creating search form -->
 <form class="form-inline">
             <div class="form-group">
-            <label for="addFav">Add an animal</label>
+            <label for="addFav">Add Animal</label>
             <input type="text" id="newTopic" class="form-control">
             </div>
         
@@ -50,11 +54,13 @@
 
 <br>
 
+
+<div class="wrap">
 <div class="row">
-  <div class="col-12">
         <div id="gifs-appear-here">
         </div>
     </div>
+</div>
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
