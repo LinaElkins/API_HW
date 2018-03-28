@@ -4,139 +4,74 @@
 <head>
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Giphy API Fun</title>
+        <title>Animal Giphy API</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-        <link rel="stylesheet" type="text/css" media="screen" href="assets/CSS/style.css" />
+       <!-- Bootstrap -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+       <!-- Link CSS Style Sheet -->
+        <link rel="stylesheet" type="text/css" media="screen" href="assets/CSS/style.css">
+        <!-- link to jQuery -->
+        <script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
         <script src="assets/javascripts/app.js"></script>
 </head>
 
+
+
 <body>
+    <div class="container">
+      <div class="jumbotron">
+          <h1 class="display-4">Animal Giphy API Search Page</h1>
+          <p class="lead">Provide an animal of your interest in the search box, this page will automatically search 10 giphy of that animal for you.</p>
+          <hr class="my-4">
+          </p>
+      </div>
 
-    <!-- creating animal topics -->
-
-<div class = "container">
-<div class="row" id="topics">
-  <button data-animal="dog">Dog</button>
-  <button data-animal="cat">Cat</button>
-  <button data-animal="cow">Cow</button> 
-  <button data-animal="bird">Bird</button>
-  <button data-animal="panda">Panda</button>
-  <button data-animal="rabbit">Rabbit</button>
-  <button data-animal="dolphin">Dolphin</button>
-  <button data-animal="tiger">Tiger</button>
-  <button data-animal="bobcat">Bobcat</button>
-  <button data-animal="caracal">Caracal</button>
-  <button data-animal="chipmunk">Chipmunk</button>
-
-    <div id="newFav">
-
-   </div>
-
-</div>
-
-</div>
-
-<br>
-
-<!-- creating search form -->
-<form class="form-inline">
-            <div class="form-group">
-            <label for="addFav">Add Animal</label>
-            <input type="text" id="newTopic" class="form-control">
+     <div class="row">
+        <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+          <!-- Button display here -->
+            <div class="animalButton">
+          
             </div>
-        
-            <button type="submit" id="addFav" class="btn btn-default">Submit</button>
- </form>
 
- 
-</div>
-
-<br>
-
-
-<div class="wrap">
-<div class="row">
-        <div id="gifs-appear-here">
+        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+          <!-- search box display here -->
+            <div class="searchBox">
+                <form class="form-inline">
+                    <div class="form-group mb-2">
+                      <label class="sr-only">Search Animal</label>
+                      <input type="text" readonly class="form-control-plaintext" value="Add an Animal Here">
+                    </div>
+                    <div class="form-group mx-sm-3 mb-2">
+                      <label type="text" class="sr-only">New Animal</label>
+                      <input type="text" class="form-control" id="newAnimalInput">
+                    </div>
+                    <button type="submit" class="btn btn-default" id="submitNewAnimal">Submit</button>
+                  </form>
+            </div>
         </div>
-    </div>
-</div>
-</div>
+        </div>
+     </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script type="text/javascript">
-// Event listener for all button elements
- $("button").on("click", function() {
-    // In this case, the "this" keyword refers to the button that was clicked
-    var animal = $(this).attr("data-animal");
+     <div class="row">
+        <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+            <!-- Giphy display here -->
+            <div id="gifs-appear-here">
 
-    // Constructing a URL to search Giphy for the name of the animal in topics
-    var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
-      animal + "&api_key=0W74wPAFg35nNm9VMTJbdCSFrMArj6jC&limit=10";
+            
+            </div>
+          
+            </div>
+     </div>
+  </div>
 
-    // Performing our AJAX GET request
-    $.ajax({
-      url: queryURL,
-      method: "GET"
-    })
-      // After the data comes back from the API
-      .then(function(response) {
-        // Storing an array of results in the results variable
-        var results = response.data;
-
-        // Looping over every result item
-        for (var i = 0; i < results.length; i++) {
-
-          // Only taking action if the photo has an appropriate rating
-          if (results[i].rating !== "r" && results[i].rating !== "pg-13") {
-            // Creating a div with the class "gif"
-            var gifDiv = $("<div class='gif'>");
-
-            // Storing the result item's rating
-            var rating = results[i].rating;
-
-            // Creating a paragraph tag with the result item's rating
-            var p = $("<p>").text("Rating: " + rating);
-
-            // Creating an image tag
-            var animalImage = $("<img>");
-
-            //set src attribute to still img url
-            animalImage.attr("src", results[i].images.fixed_height.url);
-            // animalImage.attr("srcStill", results[i].images.fixed_height_still.url);
-
-            // set src to move img
-            // animalImage.attr("srcMove",results[i].images.fixed_height.url);
+    
 
 
-            // Appending the paragraph and animalImage we created to the "gifDiv" div we created
-            gifDiv.append(p);
-            gifDiv.append(animalImage);
-
-            // Prepending the gifDiv to the "#gifs-appear-here" div in the HTML
-            $("#gifs-appear-here").prepend(gifDiv);
-          }
-        }
-      });
-  });
-
-// $(".gif").on("click",function() {  
-//     // If image is still
-//     if($(this).attr('src') == $(this).attr('src')) {
-//         // Change src to the moving image url          
-//         $(this).attr('src', $(this).attr('srcMove'));
-//     }
-//     // If image is moving
-//     else if($(this).attr('src') == $(this).attr('srcMove')) {
-//         // Change src to the still image url          
-//         $(this).attr('src', $(this).attr('srcStill'));
-//     }
-// })
-
-  
-</script>
 
 
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </body>
 
 </html>
